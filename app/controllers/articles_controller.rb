@@ -17,11 +17,15 @@ class ArticlesController < ApplicationController
     @article = Article.new(article_params)
     @article.save
 
+    flash.notice = "Article #{@article.title} created and added to index!"
+
     redirect_to article_path(@article)
   end
 
   def destroy
     @article.destroy
+
+    flash.notice = "Article #{@article.title} deleted from index!"
 
     redirect_to action: "index"
   end
@@ -33,7 +37,7 @@ class ArticlesController < ApplicationController
   def update
     @article.update(article_params)
 
-    flash.notice = "Article '#{@article.title}' Updated !"
+    flash.notice = "Article '#{@article.title}' updated!"
 
     redirect_to article_path(@article)
   end
